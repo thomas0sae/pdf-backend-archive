@@ -1,0 +1,205 @@
+Categories
+
+		Editor's Picks
+		Most Popular
+		Academic & Education
+	 	Art
+		
+		Resumes
+		Biography
+		Business & Career
+		Children & Youth
+		Environment
+		Fiction & Literature
+		Health & Fitness
+		Lifestyle
+		Personal Growth
+		Politics & Laws
+		Religion
+		Science & Research
+		Technology
+		art      
+		beauty           
+		clothing         
+		computer         
+		cooking          
+		decorating       
+		doityourself     
+		education        
+		encyclopedias
+        engineering       
+		homeimprovements  
+		science		
+		entertainment     
+		selfdevelopment	
+		fiction           
+		internet          
+		sport
+		finances          
+		jewelry           
+		travel
+		fitness           
+		law               
+		wildlife	
+		forchildren       
+		management        
+		woodworking
+		foreignlanguages  
+		military
+		gardening         
+		nonfiction
+		handicraft        
+		others
+		
+
+		
+
+Pdf
+Top 20 pdfs for getting azure jobs
+Top 20 free pdf downloads for reducing weight
+Top 20 free pdf downloads for learning python
+Top 20 free pdfs for learning Azure
+Top 20 free pdfs for Project management
+Possible Book links - Top 20
+MARKETING TECHNOLOGIST
+	SEO CONSULTANT
+WEB ANALYTICS DEVELOPER	
+DIGITAL MARKETING MANAGER
+SOCIAL MEDIA MANAGER
+GROWTH HACKER
+CONTENT MANAGER
+CONTENT STRATEGIST
+ INFORMATION ARCHITECT
+UX DESIGNER 
+UI DESIGNER
+ ACCESSIBILITY SPECIALIST
+ INTERACTION DESIGNER
+FRONT-END DESIGNER 
+FRONT-END DEVELOPER
+MOBILE DEVELOPER
+FULL-STACK DEVELOPER
+SOFTWARE DEVELOPERS
+WORDPRESS DEVELOPER
+FRAMEWORKS SPECIALIST
+RUBY ON RAILS DEVELOPER
+PYTHON DEVELOPER
+BUSINESS SYSTEMS ANALYST
+SYSTEMS ENGINEER
+SYSTEMS ADMINISTRATOR
+DATABASE ADMINISTRATOR
+DATA ARCHITECT
+Hardware Engineer
+DATA MODELER
+CLOUD ARCHITECT
+DEVOPS MANAGER
+AGILE PROJECT MANAGER
+PRODUCT MANAGER
+TECHNICAL ACCOUNT MANAGER
+QA (QUALITY ASSURANCE) SPECIALIST
+GAME DEVELOPER
+COMPUTER GRAPHICS ANIMATOR
+MOBILE APP DEVELOPER
+Cloud Architect
+Cloud Consultant
+Cloud Product and Project Manager
+Cloud Services Developer
+Cloud Software and Network Engineer
+Cloud System Administrator
+Cloud System Engineer
+Computer Science
+Computer Programming/Programmer, General
+Modeling, Virtual Environments and Simulation
+Artificial Intelligence
+Computer Software Engineering
+Network Administrator
+Data Architect
+Solutions Architect
+Computer Network Architect
+Computer Technical Support Specialist
+Site Reliability Engineer
+Computer Systems Analyst
+Software Engineer
+User Interface Designer
+Database Administrator
+Business Intelligence Developer
+Information Technology Manager
+Data Scientist
+Development Operations (DevOps) Engineer
+Applications Architect
+Cloud Solutions Architect
+Web Developer
+Information Security Analyst
+Mobile Application Developer
+
+
+Books on religion - christianity etc
+Christianity books
+Islam Books
+
+
+
+Customization
+Show a warning that you might be downloading a potential copyright pdf. 
+Also show them a warning that we are sending you to an external site and we dont have any controls over the contents
+Captcha?
+Create a common download page and just pass the id so that that page can be monetized
+Show last accessed pages, categories - show images and link it
+Frequently accessed pdfs in the week or month
+Monthly snapshots - searches
+Check for copyright during mining
+Pdf to different for at conversions
+Better tracking
+
+ 
+
+Pdf that is downloaded
+— keep that in a separate storage and serve. Start with that.
+Need space for image
+Elastic not needed initially- just Ram is enough
+Run indexing in a separate machine
+First generate images and pdf for the documents already in hand
+Show pdf links possible. Other books just download
+
+
+
+ere’s a list of 11 places where you can find a wealth of free e-books (yes, free e-books!).
+
+Google eBookstore. The Google eBookstore offers an entire section of free e-books to download.
+Project Gutenberg.
+Open Library.
+Internet Archive.
+BookBoon.
+ManyBooks.net.
+Free eBooks.
+LibriVox.
+Where can I read books for free?
+10 sites where you can read books online
+
+Project Gutenberg. Project Gutenberg is a mother of all ebook sites.
+Internet Archive. Internet Archive, founded in 1996, is a non-profit organization offering free access to digital or digitized content: books, images, videos, or audio files.
+Open Library.
+Google Books.
+Smashwords.
+Blurb.
+Scribd.
+Wattpad.
+
+
+
+
+
+https://downmagaz.net/tags/P/
+
+http://magzdb.org/file/456495/dl
+
+https://www.reddit.com/r/DataHoarder/comments/fkd75y/collection_of__magazines/
+
+https://1lib.us/s/PL%20Magazine
+
+
+
+sudo zgrep 'Ban' /var/log/fail2ban.log* | grep "limit"
+
+
+systemctl daemon-reload
+systemctl list-units --type=service --state=running

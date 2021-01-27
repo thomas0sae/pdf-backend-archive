@@ -1,0 +1,204 @@
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/58704a3050274077d8b640ae145d3dca/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/FaAGHqxWIvs"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/a4bc95312d3bbc2f076f3ba94eee8af3/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/f3l2FwCHjm8"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/d392edb9601b23090b1ce4c5c7bd5080/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/xydiy9VnVZQ"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/385c5b2c2124128c23752a1b70040c24/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/oJPubuiCsYY"
+    }
+  }
+}'
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf1/_update/dc4fb6fd1826b0484878dbb898d86dda/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/WiqGI7_g0Xw"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/1cc4d5256100f2acd1884734689826fe/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/yzGLkKC2Ys8"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/c2362003cad90a4f2052bf22f03264d5/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/MDuVABHJpcw"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/77c8038962f5a9ff46c97f37e7674ba5/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/TSNZAeRu3Ew"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/2aad54be450ccc9c722ab7d40aad5dda/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/_QuzR4uhXl0"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/375e2117bb6eb93d42e8574ed651230c/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/xg1tbnwSjvM"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/04b4151184f5c31645605a8baad9fc13/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/k0AFYO4i4Ps"
+    }
+  }
+}'
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/58704a3050274077d8b640ae145d3dca/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/FaAGHqxWIvs"
+    }
+  }
+}'
+
+asthoms@localhost:~$ curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/9408ccb490012a21c6996b92c67ed40e/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/pB3shfkFkZE"
+    }
+  }
+}'
+{"_index":"pdf2","_type":"_doc","_id":"9408ccb490012a21c6996b92c67ed40e","_version":2,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seqasthoms@localhost:~$ _term":5}asthoms@localhost:~$ curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/dc21fd079aa8094892b36aa58bd5f443/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/PqX601oCHpI"
+    }
+  }
+}'
+{"error":{"root_cause":[{"type":"document_missing_exception","reason":"[_doc][9408ccb490012a21c6996b92c67ed4dc21fd079aa8094892b36aa58bd5f443]: document missing","index_uuid":"EHFNIyANSj6UIZzgMBRS4Q","shard":"0","index":"pdf2"}],"type":"document_missing_exception","reason":"[_doc][9408ccb490012a21c6996b92c67ed4dc21fd079aa8094892b36aa58bd5f443]: document missing","index_uuid":"EHFNIyANSj6UIZzgMBRS4Q","shard":"0","index":"pdf2"},"status":404}asthoms@localhost:~$ curl -XPOS8094892b36aa58bd5f443/" -H 'Content-Type: application/json' -d 'ost:9200/pdf2/_update/9408ccb490012a21c6996b92c67ed4dc21fd079aa8
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/PqX601oCHpI"
+    }
+  }
+}'^C
+asthoms@localhost:~$
+asthoms@localhost:~$ curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/dc21fd079aa8094892b36aa58bd5f443" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/PqX601oCHpI"
+    }
+  }
+}'
+{"_index":"pdf2","_type":"_doc","_id":"dc21fd079aa8094892b36aa58bd5f443","_version":2,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seqasthoms@localhost:~$ curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/839ff8aa748cd9389196e644ec04cc49" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/pTQ3yNsQOyA"
+    }
+  }
+}'
+{"_index":"pdf2","_type":"_doc","_id":"839ff8aa748cd9389196e644ec04cc49","_version":2,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seqasthoms@localhost:~$ curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/404565f634cd00b2604a0a0bd59aff83" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/Ps71eUKTfEU"
+    }
+  }
+}'
+{"_index":"pdf2","_type":"_doc","_id":"404565f634cd00b2604a0a0bd59aff83","_version":2,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seqasthoms@localhost:~$ curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/58704a3050274077d8b640ae145d3dca/" -H 'Content-Type: application/json' -d '
+> {
+>   "script": {
+>     "source": "ctx._source.ytbe = params.ytbe",
+>     "lang": "painless",
+>     "params": {
+>       "ytbe": "https://www.youtube.com/embed/FaAGHqxWIvs"
+>     }
+>   }
+> }'
+{"_index":"pdf2","_type":"_doc","_id":"58704a3050274077d8b640ae145d3dca","_version":4,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":336597,"_primary_term":5}asthoms@localhost:~$
+

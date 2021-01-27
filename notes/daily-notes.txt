@@ -1,0 +1,1044 @@
+14th March 2020
+	Moved all the necessary items to F:\everything_pdf
+	Have to move remaining things to this folder from elsewhere. Downloaded the latest tomcat and elastic is already available. Gotta configure data.
+	OpenJDK 11 on the path
+	Elastic also moved. Seems to be working fine from the new everything_pdf folder
+
+16th March 2020
+	F:\everything_pdf\source-code\python-warc-processor\warc-index-processor
+	Downloaded two scripts to see how to parse WARC files. 
+	https://gist.github.com/snakers4/40c700745f1c811a82bb7a9d8d5d21dd
+	Based on this blog - https://spark-in.me/post/parsing-common-crawl-in-two-simple-commands
+	
+18th march 2020
+	F:\everything_pdf\source-code\python-all-pdf-work\python_warc
+
+19th March
+	Everything about pdf and java work will be under F:\everything_pdf\source-code\java-all-pdf-work
+	All python work to be put under F:\everything_pdf\source-code\python-all-pdf-work
+	Any downloads I do, for reference, should be under F:\everything_pdf\source-code\_junk_downloads_for_reference
+	
+	F:\Work\scripts\test_db-master\test_db-master - test_db-master  is oracle sample db for experimenting
+	
+	Command to print certain lines from a big files
+	sed -n "1000000,2000000p;2000001q" CC-MAIN-20200216182139-20200216212139-00000.warc > selected_lines.txt
+	head -2000000 CC-MAIN-20200216182139-20200216212139-00000.warc | tail -1000000 > selected_lines.txt
+	
+	To find the next and before three lines using sed
+	grep -A 4 "<</Type /Pages" CC-MAIN-20200216182139-20200216212139-00000.warc | grep -v "<</Type /Pages" | grep -v '^\d*$'
+	grep -A 4 -B 4 "<</Type /Pages" CC-MAIN-20200216182139-20200216212139-00000.warc
+	
+	(number of CPU cores / Average Page Response Time in seconds) * 60 * User Click Frequency in seconds = Maximum simultaneous users
+	2/2 * 60 * 3  ~ 200 users
+	
+	
+	
+		 
+ 
+ 
+ 
+ Bugs 	-- Search dropdown is jumping
+ 
+ 
+ 
+	http://localhost:8080/pdf
+	http://localhost:8080/pdf/domain?q=hypnosubliminals.com
+	http://localhost:8080/pdf/download/4A2DF9D659D38249E630AF9600366EAC/2017%20gmc%20yukon%20slt%20repair%20manual.pdf
+	
+ 
+ 
+Features to build
+		
+Automatically download a ccrawl zip from a list of warc paths as argument - this enables multiple executions
+Parse through the zip and go through each response
+if response is a pdf, 
+	Just write the full link, link it was found write to a file with a name of coommon crawl file. we can write a program later to read those links and parse it 
+If response is not a pdf, 
+	then parse and see if html has pdf links
+	Just write the full link, write to a file. we can write a program later to read those links and parse it
+	
+	
+Read a file full of links
+	download each pdf, process take details and delete (think if we need to delete or manually curate later.)
+		what to read from PDF
+			- Dont take it if it is less than 5 pages or less than 200KB. 
+			- Check first 6 pages and search for 
+					ISBN actual regex match 
+					ISBN English word Mention
+					Reprint
+					Edition
+					Revised
+					Reprinted
+					Cookbook
+					CopyRight
+					All rights reserved
+					O’Reilly
+					Editor
+					Revision History
+					Logo
+					registered trademarks
+					ISBN: 978-1-449-31943-4
+					Table of Contents
+					Published by
+					Printed in
+
+			- Count page No - Elastic
+			- Take first page image
+			- Language - 
+			- find pdf create date, else put 2020
+			- Take pdf size
+			- file name 
+			- Title name if possible, mostly first page data if less than say 20 words
+			- author
+			- Year (why )			
+			- add domain from which it was found. don't show it in the UI
+			- 
+			Title
+			keywords (could be ISBN), something else later.
+			
+	write it to a elastic bulk upload format
+	create a folder structure and put image inside
+	add it to a category by default. - Will change this manually later.
+	
+	
+
+	isCopyRight - Yes
+	keywords:
+	language:
+	isCopyRight
+	downloadCount
+	imagePath
+	linkPdfFound-
+	size:
+	pageCount:
+	pdf-year
+	pdf-index-year
+	fileName
+	last downloaded
+	last searched
+	
+	
+	
+	https://github.com/shuyo/language-detection
+	https://github.com/shuyo/language-detection/blob/wiki/ProjectHome.md
+	http://tika.apache.org/1.5/detection.html#Language_Detection
+	http://www.lextek.com/langid/li/
+	
+	
+
+
+
+nohup java -Xmx1400m -cp ROOT.jar:ROOT-jar-with-dependencies.jar com.pdf.parse.links.JsonLinkReaderAndProcessor pdf-links-and-domain-CC-MAIN-20200216182139-20200216212139-00001.warc.gz.json &
+
+	
+	
+$ wget -r 10 http://192.168.99.1:9090/dl.booktolearn.com/
+
+
+<embed width="91" height="107" name="plugin" src="https://camba.tv/wp-content/uploads/2016/07/Port-Forwarding-and-Remote-Monitoring-of-CCTV.pdf" type="application/pdf">
+<iframe src="http://docs.google.com/gview?url=https://camba.tv/wp-content/uploads/2016/07/Port-Forwarding-and-Remote-Monitoring-of-CCTV.pdf&embedded=true" 
+style="width:600px; height:500px;" frameborder="0"></iframe>
+
+
+nohup sh runProg500.sh >> nohup500.out 2>&1 &
+
+nohup sh runProg100.sh >> nohup100.out 2>&1 &
+nohup sh runProg200.sh >> nohup200.out 2>&1 &
+nohup sh runProg300.sh >> nohup300.out 2>&1 &
+nohup sh runProg400.sh >> nohup400.out 2>&1 &
+nohup sh runProg500.sh >> nohup500.out 2>&1 &
+
+
+nohup sh runProg105.sh >> nohup105.out 2>&1 &
+sleep 1000 
+nohup sh runProg155.sh >> nohup155.out 2>&1 & 
+sleep 600 
+nohup sh runProg205.sh >> nohup205.out 2>&1 & 
+sleep 600 
+nohup sh runProg255.sh >> nohup255.out 2>&1 & 
+sleep 600 
+nohup sh runProg305.sh >> nohup305.out 2>&1 & 
+
+
+
+nohup sh runProg355.sh >> nohup355.out 2>&1 &
+nohup sh runProg400.sh >> nohup400.out 2>&1 &
+nohup sh runProg450.sh >> nohup450.out 2>&1 & 
+nohup sh runProg500.sh >> nohup500.out 2>&1 & 
+nohup sh runProg550.sh >> nohup550.out 2>&1 & 
+
+tar -zcvf CC-MAIN-20200328164156-20200328194156-00500.gz CC-MAIN-20200328164156-20200328194156-00500/         
+tar -zcvf CC-MAIN-20200328164156-20200328194156-00501.gz CC-MAIN-20200328164156-20200328194156-00501/         
+
+ 
+
+
+mv runProg100.sh  runProg105.sh
+mv runProg150.sh  runProg155.sh
+mv runProg200.sh  runProg205.sh
+mv runProg250.sh  runProg255.sh
+mv runProg300.sh  runProg305.sh
+mv runProg350.sh  runProg355.sh
+
+
+sudo systemctl status nginx
+sudo systemctl restart nginx
+sudo systemctl status nginx
+
+
+sudo systemctl status elasticsearch
+sudo rm -f /var/log/elasticsearch/*
+sudo mkdir -p /var/www/allpdf.info/html
+sudo chown -R asthoms:asthoms /var/www/allpdf.info/html
+
+
+
+
+xcopy CC-MAIN-20200328074047-20200328104047-00018 single /E /Y
+
+
+
+
+prod  tomcat
+asthoms@allpdf:/opt/tomcat$ sudo chmod -R 755 webapps/
+
+
+Use this site key in the HTML code your site serves to users.
+6Lf9O60ZAAAAABLtq_pOW80GNqXKNEOolSKT_KEU
+Use this secret key for communication between your site and reCAPTCHA.
+6Lf9O60ZAAAAAIHHvbJMkgxT8iNsKn0DBVNZrRgp
+
+
+
+ere’s a list of 11 places where you can find a wealth of free e-books (yes, free e-books!).
+
+Google eBookstore. The Google eBookstore offers an entire section of free e-books to download.
+Project Gutenberg.
+Open Library.
+Internet Archive.
+BookBoon.
+ManyBooks.net.
+Free eBooks.
+LibriVox.
+Where can I read books for free?
+10 sites where you can read books online
+
+Project Gutenberg. Project Gutenberg is a mother of all ebook sites.
+Internet Archive. Internet Archive, founded in 1996, is a non-profit organization offering free access to digital or digitized content: books, images, videos, or audio files.
+Open Library.
+Google Books.
+Smashwords.
+Blurb.
+Scribd.
+Wattpad.
+
+List directory several depth only
+robocopy . . /l /s /njh /njs /ns /lev:4
+
+
+linkchecker --file-output=sitemap -o=sitemap -v --check-extern https://b-ok.cc/book/ --no-status --no-warnings --ignore-url="^.png" --ignore-url="^.css" --ignore-url="^.jpg" --ignore-url="^.js" --user-agent="Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.92 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" --ignore-url="^.jpeg" > sitemap2.xml
+
+
+
+Linode
+Access Key:
+DEESN06EO0IQKLY1KCYN
+Secret Key:
+1zO1Prvr71E9f4xmWCmrwxhPnWLgJtrV85vbQnAQ
+personal Access token
+df24afe74e452da9ebe677c7012eaec553dfdd8b9230465b2ccbf0a0b200ed8e
+full access 086d849884ccee302e3a89317d7913a22c4271a1e993a0b28d5345cd3ff16e4f
+
+
+pip3 install linode-cli --upgrade
+f:\work\utilities\python37\python.exe -m pip install --upgrade pip
+pip3 install boto
+linode-cli configure
+linode-cli obj put --acl-public example.txt allpdf.info
+
+
+
+for s3cmd
+Download get-pip.py
+https://bootstrap.pypa.io/get-pip.py
+
+save it to I:\Python27
+s3cmd needs python 2
+https://www.liquidweb.com/kb/install-pip-windows/
+
+
+WARNING: The scripts pip.exe, pip2.7.exe and pip2.exe are installed in 'I:\Python27\Scripts' which is not on PATH.
+
+so, set environmet paths to scripts
+Thenk
+
+pip install python-dateutil
+
+I:\Python27\python setup.py install
+
+python s3cmd --configure
+
+
+Update Windows time to reflect the correct time.
+
+
+Prod
+sudo apt-get install s3cmd
+/home/asthoms/.s3cfg
+
+https://www.xpresservers.com/how-to-use-linode-object-storage/
+Navigate to the directory you would like to sync, then enter the following:
+check below - F:\Work\Utilities\s3cmd-2.1.0 python s3cmd sync . s3://allpdf.info/pdf-images/ -P
+
+to find size
+s3cmd du s3://allpdf.info
+
+
+
+
+
+cd I:\s3cmd-2.1.0
+I:\Python27\python setup.py install
+
+python s3cmd --configure
+
+Windows
+https://stackoverflow.com/questions/18236274/how-do-we-setup-s3cmd-on-windows7
+
+F:\Work\Utilities\s3cmd-2.1.0
+
+First time -  python C:\Python27\Scripts\s3cmd %*
+python s3cmd --configure
+ python F:\Work\Utilities\s3cmd-2.1.0\s3cmd sync . s3://allpdf.info/pdf-images/ -P
+
+
+C:\Users\thoma\AppData\Roaming\s3cmd.ini
+L:\libgen\libgenhp-324-900-sept8db\pdf-images>I:\Python27\python I:\s3cmd-2.1.0\s3cmd sync . s3://allpdf.info/pdf-images/ -P
+
+python I:\s3cmd-2.1.0\s3cmd sync . s3://allpdf.info/pdf-images/ -P
+
+L:\libgen\libgenhp-324-900-sept8db\pdf-images>python I:\Python27\Scripts\s3cmd --no-check-md5 sync . s3://allpdf.info/pdf-images/ -P -v -d
+
+
+This is the command needed to run s3cmd. Others are before that. 
+Navigate to the directory you would like to sync, then enter the following:
+I:\Python27\python I:\Python27\Scripts\s3cmd --no-check-md5 --recursive put . s3://allpdf.info/pdf-images/ -P -v
+
+
+
+to run certificate
+sudo certbot --nginx -d allpdf.info -d www.allpdf.info
+
+
+
+Notepad++ Regex search
+"ixDate":"[a-z]+\s+(\d\d)\>...................
+
+"ixDate":1593878701985
+
+
+ns-cloud-a1.googledomains.com
+ns-cloud-a2.googledomains.com
+ns-cloud-a3.googledomains.com
+ns-cloud-a4.googledomains.com
+
+
+
+listen [::]:443 ssl ipv6only=on; # managed by Certbot
+listen 443 ssl; # managed by Certbot
+ssl_certificate /etc/letsencrypt/live/allpdf.info/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/allpdf.info/privkey.pem; # managed by Certbot
+include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+A	*	Your server's IP	600 seconds
+A	@	Your server's IP	600 seconds
+A	admin	Your server's IP	600 seconds
+A	mail	Your server's IP	600 seconds
+CNAME	autoconfig	@	1 Hour
+CNAME	autoconfig.admin	@	1 Hour
+CNAME	autodiscover	@	1 Hour
+CNAME	autodiscover.admin	@	1 Hour
+CNAME	cpanel	@	1 Hour
+CNAME	ftp	@	1 Hour
+CNAME	webdisk	@	1 Hour
+CNAME	webdisk.admin	@	1 Hour
+CNAME	webmail	@	1 Hour
+CNAME	whm	@	1 Hour
+CNAME	www	@	1 Hour
+CNAME	www.admin	@	1 Hour
+CNAME	_domainconnect	_domainconnect.gd.domaincontrol.com	1 Hour
+MX	@	mailstore1.secureserver.net (Priority: 10)	1 Hour
+ 
+
+MX	@	smtp.secureserver.net (Priority: 0)	1 Hour
+TXT	@	v=spf1 a mx ptr include:secureserver.net ~all	1 Hour
+TXT	admin	v=spf1 a mx ptr include:secureserver.net ~all	1 Hour
+SRV	_autodiscover._tcp.@	0 0 443 cpanelemaildiscovery.cpanel.net	1 Hour
+SRV	_autodiscover._tcp.admin	0 0 443 cpanelemaildiscovery.cpanel.net	1 Hour
+NS	@	ns25.domaincontrol.com	1 Hour
+NS	@	ns26.domaincontrol.com	1 Hou
+
+
+
+Linode 
+Account active since 2020-07-27
+
+find . -type f -name "*.pdf" -exec pdftitle -p {} -c \;
+
+
+F:\everything_pdf\source-code\java-all-pdf-work\pdf-backend>java -cp target\ROOT.jar;target\jdbc-1.4.jar;target\sqlite-jdbc-3.32.3.2.jar;target\ROOT-jar-with-dependencies.jar; com.libgen.LibGenImageDownload
+
+
+
+libgen database files are dowwnloaded from 
+https://lgdumps.xyz/dumps/
+
+
+The libgen desktop has some tables in libgen.db which can be updated via the libgen desktop tool
+It can also be browsed via db browser
+
+
+
+
+
+C:\Users\easothomas\Downloads\000>..\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin\ffmpeg.exe -loop 1 -y -i 000242068bdd9361e082a52d0db9883-d.jpg -i ..\Rihanna1.m4a -shortest -acodec copy -vcodec mjpeg result.avi
+
+
+
+..\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin\ffmpeg.exe -loop 1 -t 5 -i 0005928e6ad9ae3a5f83ae1ffbe14ed6-d.jpg -loop 1 -t 5 -i 000e3b11d21d456ce69548fc899b18b7-d.jpg  -loop 1 -t 5 -i 00067775797FF58B10C48625001582C8-d.jpg -loop 1 -t 5 -i 000d950d2085c20b487a6cc7ad3d610c.jpg -loop 1 -t 5 -i 00024206d8bdd9361e082a52d0db9883-d.jpg  -i ..\Rihanna1.m4a -shortest -acodec copy -filter_complex  "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=out:st=4:d=1[v0];  [1:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v1];  [2:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v2];  [3:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v3];  [4:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v4];  [v0][v1][v2][v3][v4]concat=n=5:v=1:a=0,format=yuv420p[v]" -map "[v]" out.mp4
+ 
+ 
+..\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin\ffmpeg.exe -loop 1 -t 5 -i 0005928e6ad9ae3a5f83ae1ffbe14ed6-d.jpg -loop 1 -t 5 -i 000e3b11d21d456ce69548fc899b18b7-d.jpg  -loop 1 -t 5 -i 00067775797FF58B10C48625001582C8-d.jpg -loop 1 -t 5 -i 000d950d2085c20b487a6cc7ad3d610c.jpg -loop 1 -t 5 -i 00024206d8bdd9361e082a52d0db9883-d.jpg  -i ..\Rihanna1.m4a -filter_complex  "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=out:st=4:d=1[v0];  [1:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v1];  [2:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v2];  [3:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v3];  [4:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v4];  [v0][v1][v2][v3][v4]concat=n=5:v=1:a=0,format=yuv420p[v]" -map "[v]" -map 5:a -shortest out.mp4
+ 
+ 
+ 
+0005928e6ad9ae3a5f83ae1ffbe14ed6-d.jpg
+000e3b11d21d456ce69548fc899b18b7-d.jpg
+00067775797FF58B10C48625001582C8-d.jpg
+000d950d2085c20b487a6cc7ad3d610c.jpg
+00024206d8bdd9361e082a52d0db9883-d.jpg
+000b7e49fe0c56137ff5b24abe311a02.jpg
+0004e2791a73005dc900824624b44c35-d.jpg
+000599f469140ac3c828876e258866af-d.jpg
+
+
+
+https://superuser.com/questions/833232/create-video-with-5-images-with-fadein-out-effect-in-ffmpeg/1071748#1071748
+
+
+
+
+
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=1&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results21.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=2&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results22.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=3&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results23.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=4&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results24.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=5&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results25.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=6&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results26.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=7&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results27.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=8&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results28.json
+wget "http://hn.algolia.com/api/v1/search_by_date?query=.pdf&page=9&hitsPerPage=100&tags=story&numericFilters=created_at_i>1577880000,created_at_i<1580515199" -O 10-13-2020/search_results29.json
+
+
+
+
+
+Save both the private key and certificate below to your web server. To save, copy the contents of the boxes below and paste them into different files on your web server, e.g., example.com.pem and example.com.key. After saving, select your web server from the dropdown and click the “Show Instructions” button for an installation guide.
+
+Key format 
+
+Origin Certificate 
+-----BEGIN CERTIFICATE-----
+MIIEpjCCA46gAwIBAgIUdyLsbPR5AuHziKXw9JTqOdummYAwDQYJKoZIhvcNAQEL
+BQAwgYsxCzAJBgNVBAYTAlVTMRkwFwYDVQQKExBDbG91ZEZsYXJlLCBJbmMuMTQw
+MgYDVQQLEytDbG91ZEZsYXJlIE9yaWdpbiBTU0wgQ2VydGlmaWNhdGUgQXV0aG9y
+aXR5MRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQIEwpDYWxpZm9ybmlh
+MB4XDTIwMTAxNjA2MTQwMFoXDTM1MTAxMzA2MTQwMFowYjEZMBcGA1UEChMQQ2xv
+dWRGbGFyZSwgSW5jLjEdMBsGA1UECxMUQ2xvdWRGbGFyZSBPcmlnaW4gQ0ExJjAk
+BgNVBAMTHUNsb3VkRmxhcmUgT3JpZ2luIENlcnRpZmljYXRlMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6/0KYCZkcEzMMjs+Fgv8xp0zLg/RRV/xjiaZ
+bm6Wm0BgFSJNRrCsJ7yahlNGwrenlghpt4vkOR6SCEYoE0fqgtZAPl4mWrS6x31z
+c4yIFZx6CSYgrT3YTpls2JSgS6asYIlc4rmJmrOxHXcVNFBctCxZMoOVWBtbWs4U
+EF83GfG4DYdN3mJvTHhmR6H6B4zjMASj4mxsLU7zvUfEh7PBTR+86GgzE4LqYMix
++4PIUDROljafWdUj3N9+FjbrCrogovWWFdJYX05ZyqvaNdPVqxVZpUc35ZZzuN0X
+wctiNCee1sIhDeSJ4MtpHaph7ULtDpE0wiLnYtkR+/AT36GnfQIDAQABo4IBKDCC
+ASQwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcD
+ATAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBSBCCxi6ei93fvjPow2LW1s0WkZJTAf
+BgNVHSMEGDAWgBQk6FNXXXw0QIep65TbuuEWePwppDBABggrBgEFBQcBAQQ0MDIw
+MAYIKwYBBQUHMAGGJGh0dHA6Ly9vY3NwLmNsb3VkZmxhcmUuY29tL29yaWdpbl9j
+YTApBgNVHREEIjAggg8qLnBkZmRvbWFpbi5jb22CDXBkZmRvbWFpbi5jb20wOAYD
+VR0fBDEwLzAtoCugKYYnaHR0cDovL2NybC5jbG91ZGZsYXJlLmNvbS9vcmlnaW5f
+Y2EuY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQCjM+xxr4jMeq0qNIGRd611+3RyePZC
+34Z1kGXiZhsLpk8phosiRsXGHFwJJ8Qi7j6Iz8278Q5JT8nu+LfMhwm8Qe1sIkPC
+f3BrixpdAgklBbA2P3yqF6snNyf9KGZHvh0py2pdgkq24d8FY4RGzuqtfHwRJviZ
+Fr2z0ByQDCcseU0fx++3pvgO4hy+j/BGFP7BTvwR1udNoi0Z6mUrQUemOk+PJPBr
+NwK4rIui2Yh0yW76+9dzb6Om4XOlScOEJJkIfK5o540lRXkF48DN/n+p87xKAYDV
+4AZh4n3wucCmKLmrRdO4QRiGEm4aKh4VbpSPgEdj6ijuYmiquiTRUa9q
+-----END CERTIFICATE-----
+Private key 
+Copy the contents of your private key below to your web server and set file permissions such that only your http server can access it. Additionally, you can optionally encrypt this file and provide a password to decrypt it during your origin web server startup. The private key data will not be stored at Cloudflare and will no longer be accessible once the creation is complete. Please make sure you have a local copy of this key.
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDr/QpgJmRwTMwy
+Oz4WC/zGnTMuD9FFX/GOJplubpabQGAVIk1GsKwnvJqGU0bCt6eWCGm3i+Q5HpII
+RigTR+qC1kA+XiZatLrHfXNzjIgVnHoJJiCtPdhOmWzYlKBLpqxgiVziuYmas7Ed
+dxU0UFy0LFkyg5VYG1tazhQQXzcZ8bgNh03eYm9MeGZHofoHjOMwBKPibGwtTvO9
+R8SHs8FNH7zoaDMTgupgyLH7g8hQNE6WNp9Z1SPc334WNusKuiCi9ZYV0lhfTlnK
+q9o109WrFVmlRzfllnO43RfBy2I0J57WwiEN5Ingy2kdqmHtQu0OkTTCIudi2RH7
+8BPfoad9AgMBAAECggEAJhBIu+T9ZtKwTfrZww8YbMW+01NoTw8QZHwL2/DY+H4r
+8US436nP/tHQP9HPVElwrcW6HYmiHGd2qQB95sw/Am8B6j1f5NoJVXOB63WTnp7A
+XVjpxN+4k8bx9EYWy9T8sU5+rbA9Bnes3gKO6EL9DO+pTHlGXbF97PnX6SMefV+9
+H15bVcB/hm+bC693T2NPFurDF4qk25lPhHpwv4pFWiemW7t/vKMj+WSuPcRWTPPG
+H4ZgFtR/k/RKGmDxHguGt2mMtah0TluRQF/lm0RhUA+pSGNJIBB/5M2dP/sG00QX
+PXQtyZhidpZKlME9mbIS907eEKibSqaCJEiN/9hh0QKBgQD7aCtwOR5iLaDFnN0z
+cIGQqZRKP4MOM43EsToN5dLRHAzMxTjkhrAi7QrLL1opvWivi0UwiBtRphAncDcT
+AY0HXaZ0zXVXTUFJgyGOSgtGg8guk3Ih/RSs9WMz+104PJgBFq84wzXT+YhwL5zd
+s3PTzwoPY/jqHo1SivI/qCE3UQKBgQDwTMI2EvnzRQS4tt16XLBJzq2Si/1kPfvu
+6uBRWRkF7c8fNSCn5Gdh+QhcpHe+i8U7ZDjRbEgUHJ8hsTR/3YUpCboY0dA3DOhm
+u3R6EGOQJ2etqa0W8Oz3HPLQWBfw9qL/D/CiJoJRZno6KldZDya1Y5ea4kk1DV/0
+3u3sU/j6bQKBgCb6iqmWoYhVTLT20jD0g5IbSLuOR1J/Wb6iP78B4AK915o0BdMg
+stRnbiH8kH0iOcXl0O9qWtn45k5HDrLqraPzuCgp5sSHXNT5+Mzn3AGt0u6tu6db
+ZsY+MYhQs65RbrvUeYxSb9kSuj2ylB6ngRDY69VhCam63OxsUIzgE25RAoGAYvZZ
+rUdXZNZxwVieEbyGZX8WgJniexwD2zsjspzM72ImwKVyk3I/GVwkE3MwVWreiT0X
+IThE3vOCna+K/XXPVz1IRNxzsZhBRb3BlFuXhVCVJDIStLX4ATUM0rzU70nDiuOX
+qE/Pr5JSmA3D90uEF4OydfjnSU/+yqvctE1I5mkCgYEA4H9mu0aC3aNLuZTQdP5n
+HYHYPxtZ0m/WlBxUTZCSIir0v7PWv7j6zlU2acn1+NWhhpZrdpwt91j5n67f+bO2
+vptHyJeep5A+sR/XaiDCmqb0eBkbdGbtct0Ao9oODtldFFSCOOX6Pwb8V3gdwK8d
+ZdWQHIp7OSi26ezKDV3F0gs=
+-----END PRIVATE KEY-----
+Web Server for Installation
+For installation instructions specific to your type of origin web server, visit our support guide on managing Origin CA certificates.
+
+
+
+
+curl -s -X POST "https://api.cloudflare.com/client/v4/user/firewall/access_rules/rules" \
+  -H "X-Auth-Email: oforgdomain@gmail.com" \
+  -H "X-Auth-Key: 388047cfd59185ed32ea79dc33c7b0c9a24f3" \
+  -H "Content-Type: application/json" \
+  --data '{"mode":"block","configuration":{"target":"ip","value":"185.157.63.162"},"notes":"Fail2ban"}'
+  
+  
+  388047cfd59185ed32ea79dc33c7b0c9a24f3
+  
+  
+  
+  
+  
+doodlMALA H and R block
+as.thoms@gmail.com
+as.thoms1234
+uJMS9VM7yVTmJ!-FzA
+jacky
+blessy
+hyundai
+
+microsoft
+sunisheaso@gmail.com
+uJMS9VM7yVTmJ!-FzA
+
+Robinhood
+322941 363135
+as.thoms@gmail.com
+p/EhCu9-RxLuHV7
+
+
+instagram
+messilion1234
+pdfdomain
+uJMS9VM7yVTmJ!-FzA
+
+
+wifi pass
+2579133286
+
+oforgdo.main@gmail.com
+as.thoms1234
+
+tubitv
+jandrewscheeran@gmail.com
+as.thoms1234
+06/19/1980
+Temp4now-12
+turbotax
+as.thoms@gmail.com
+as.thoms1234
+uJM.59jxKXyJgG5
+
+zoho - uJbS9@V7yVmJ!-FzA
+
+linode - uJbS9@V7yVmJ!-FzA
+TechPass@123!
+Windrose
+asthoms1234
+0V4uvSgsA91O
+Name cheap
+asthoms1234
+p7pJd9(yzxef<~m
+
+Federal
+f7<~p9J!d9@3-F!
+
+
+s3cmd sync ffe s3://allpdf.info/pdf-images/ -P
+
+Disney
+oforgdom.ain@gmail.com
+0V4uvSgsA91O
+
+
+Access Keys - Linod
+Access Key:
+DEESN06EO0IQKLY1KCYN
+Secret Key:
+1zO1Prvr71E9f4xmWCmrwxhPnWLgJtrV85vbQnAQ
+PAT
+df24afe74e452da9ebe677c7012eaec553dfdd8b9230465b2ccbf0a0b200ed8e
+all read write
+086d849884ccee302e3a89317d7913a22c4271a1e993a0b28d5345cd3ff16e4f
+
+
+https://us-east-1.linodeobjects.com/allpdf.info/pdf-images/00e/00eeb64cd263657fa953a7793acb488f.png
+
+6LdlAcgZAAAAAFnQI6p8UibSC1BS_SEdZIeZjKzD
+
+6LfVBcgZAAAAAELD_wk9bxXAE6Ywys9TtpQLqs9-
+checkbox
+site key - client
+
+6LdlAcgZAAAAACGoaPKyz13liUDf6qAV71ctB5f-
+secret key server side
+6LfVBcgZAAAAABQwYDPGzsM5a4NkYC03cwwpv5DV
+
+
+
+
+cscript "C:\Program Files (x86)\Microsoft Office\Office15\ospp.vbs" /inpkey:B9GN2-DXXQC-9DHKT-GGWCR-4X6XK
+6PMNJ-Q33T3-VJQFJ-23D3H-6XVTX
+
+
+
+
+curl -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" -XGET "http://localhost:9200"
+
+curl -XGET -uelastic:TechPass@123! http://localhost:9200
+
+
+
+curl -XPUT localhost:9200/_snapshot/pdf-snapshot -H 'Content-Type: application/json' -d '{
+    "type": "fs",
+    "settings": {
+        "location": "/home/asthoms/elastic-snapshot",
+        "compress": true,
+        "chunk_size": "10m"
+    }
+}'
+
+chmod -R 777 elastic-snapshot 
+curl -XPUT localhost:9200/_snapshot/pdf-snapshot -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" -H 'Content-Type: application/json' -d '{
+    "type": "fs",
+    "settings": {
+        "location": "/home/asthoms/elastic-snapshot",
+        "compress": true,
+        "chunk_size": "10m"
+    }
+}'
+
+asthoms@allpdf:~$ curl -XPUT localhost:9200/_snapshot/pdf-snapshot/2019-04-25_snapshot?wait_for_completion=true
+
+
+
+curl -XPUT localhost:9200/_snapshot/pdf-snapshot -H 'Content-Type: application/json' -d '{
+  "indices": "pdf1,pdf2",
+  "ignore_unavailable": true,
+  "include_global_state": false,
+  "partial": false
+}'
+
+POST /_snapshot/pdf-snapshot/2019-04-25_snapshot/_restore
+
+
+
+https://askubuntu.com/questions/235347/what-is-the-best-way-to-uninstall-nginx
+
+sudo apt-get purge nginx nginx-common
+sudo apt-get autoremove
+
+
+
+ String auth = userName + ":" + password;
+    byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("ISO-8859-1")));
+    String authHeader = "Basic " + new String(encodedAuth);
+
+    authToken = restClient.target(restApiUrl + loginPath)
+            .request()
+            .accept(MediaType.TEXT_PLAIN)
+            .header(HttpHeaders.AUTHORIZATION, authHeader)
+            .get(String.class);
+			
+Client client = ClientBuilder.newClient();    
+ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://mywebservice/rest/api");
+resteasyWebTarget.register(new BasicAuthentication("username", "passwd"));
+
+
+
+ResteasyClient client = new ResteasyClientBuilder()
+            .sslContext(buildSSLContext())
+            .hostnameVerifier(buildHostVerifier())
+            .build();
+
+client.register(new AddAuthHeadersRequestFilter(user, pass));
+
+
+https://stackoverflow.com/questions/22095289/basic-authentication-with-resteasy-client
+
+https://vvirlan.wordpress.com/2015/08/19/jax-rs-2-ways-to-get-the-basic-auth-username-and-password/
+
+https://stackoverflow.com/questions/6929378/how-to-set-http-header-in-resteasy-client-framework
+
+https://www.programcreek.com/java-api-examples/?api=org.jboss.resteasy.client.jaxrs.ResteasyWebTarget
+
+
+
+https://blog.situstarget.com/wp-content/uploads/2020/01/Firewall-Rules-for-WordPress.txt
+
+
+
+rewrite images
+https://stackoverflow.com/questions/3907992/nginx-route-all-requests-for-images-to-external-server
+https://gist.github.com/casivaagustin/9261586
+https://www.nginx.com/blog/creating-nginx-rewrite-rules/
+https://developers.cloudflare.com/firewall/known-issues-and-faq#how-does-firewall-rules-handle-traffic-from-known-bots
+
+
+
+Rather than using “contains” for some of these rules, you can use “matches”, and use the RE2 match making the expressions a bit shorter. For example, replace: or (http.user_agent contains “Spider”)
+or (http.user_agent contains “spider”)
+
+with:
+or (http.user_agent matches “[Ss]pider”)
+
+OR, you can use builtin functions, and simply convert the results to all lowercase:
+or (lower(http.user_agent) contains “spider”)
+
+Referencing: https://developers.cloudflare.com/firewall/cf-firewall-language/ & https://developers.cloudflare.com/firewall/cf-firewall-rules/fields-and-expressions/
+
+https://rtcamp.com/tutorials/nginx/fail2ban/
+
+
+fail2ban
+https://www.hebergementwebs.com/gnu-linux/configure-fail2ban-with-cloudflare-on-nginx-to-protect-against-dos-and-bruteforce-attacks
+https://blog.runcloud.io/cloudflare-firewall-rules/
+https://www.nginx.com/blog/dynamic-ip-denylisting-with-nginx-plus-and-fail2ban/
+https://chlee.co/how-to-secure-and-protect-nginx-on-linux-with-fail2ban/
+https://stackoverflow.com/questions/47422713/regex-for-fail2ban-not-matching-for-nginx
+https://stackoverflow.com/questions/62990087/fail2ban-nginx-badbots-help-to-set-proper-regex
+https://github.com/fail2ban/fail2ban/wiki/Best-practice#reduce-parasitic-log-traffic
+https://stackoverflow.com/questions/59660382/using-nginx-honeypot-and-using-blacklist-firewall-block-ip-or-fail2ban
+https://stackoverflow.com/questions/41447414/fail2ban-scan-for-403-in-nginx-access-logs
+
+
+
+
+hotlnking
+https://help.dreamhost.com/hc/en-us/articles/216363197-How-do-I-prevent-image-hotlinking-
+
+
+
+
+
+Done
+F:\CC-MAIN-20200918061627-20200918091627-00111\pdf-images
+F:\CC-MAIN-20200918061627-20200918091627-00100\pdf-images
+F:\CC-MAIN-20200918061627-20200918091627-00200\pdf-images 
+E:\everything_pdf\scrapes_and_downloads\CC-MAIN-20200918061627-20200918091627-00211 - Done
+E:\everything_pdf\scrapes_and_downloads\CC-MAIN-20200918061627-20200918091627-00241 - DOne
+E:\everything_pdf\scrapes_and_downloads\CC-MAIN-20200918061627-20200918091627-00251 - Done
+F:\CC-MAIN-20200918061627-20200918091627-00231 - done
+
+
+
+
+
+
+http://elementsofprogramminginterviews.com/sample/epilight_python_new.pdf
+http://www.r-5.org/files/books/computers/overviews/cs-tools/Gayle_Laakmann-Cracking_the_Coding_Interview-EN.pdf
+https://cin.ufpe.br/~fbma/Crack/Cracking%20the%20Coding%20Interview%20189%20Programming%20Questions%20and%20Solutions.pdf
+https://cin.ufpe.br/~fbma/Crack/Cracking%20the%20Coding%20Interview%20189%20Programming%20Questions%20and%20Solutions.pdf
+https://iscareers.byu.edu/documents/Resources/Cracking%20the%20Coding%20Interview,%204%20Edition%20-%20150%20Programming%20Interview%20Questions%20and%20Solutions.pdf
+http://englishonlineclub.com/pdf/Cracking%20the%20Coding%20Interview%20-%20189%20Programming%20Questions%20and%20Solutions%20(6th%20Edition)%20[EnglishOnlineClub.com].pdf
+
+
+
+
+
+
+Calibre Related
+https://calibre-ebook.com/
+https://manual.calibre-ebook.com/generated/en/calibredb.html
+
+Calibre can download magazines - Use the Python program and see how it does-firewall-rules-handle-traffic-from-known-bots
+
+Some source code linked for SQL
+http://bazaar.launchpad.net/~kovid/calibre/trunk/view/head:/src/calibre/db/tables.py
+
+Source
+https://github.com/kovidgoyal/calibre
+
+https://github.com/janeczku/calibre-web - UI for the books - Interesting
+https://github.com/janeczku/calibre-web/wiki
+
+
+
+
+
+
+
+
+
+wget --spider --force-html -r -l2 http://the-eye.eu/public/Books 2>&1 | grep '^--' | awk '{ print $3 }' | grep -v '\.\(css\|js\|png\|gif\|jpg\)$' > urls.m3u
+
+wget --spider --force-html -r -l2 http://the-eye.eu/public/Books 2>&1 | grep '^--' | awk '{ print $3 }' | grep '\.\(pdf\)$' > pdfs.txt
+
+https://stackoverflow.com/questions/18202772/python-web-crawler-print-only-link-that-contains-certain-word-in-its-path-me/18203390
+
+
+
+
+wget --mirror --convert-links --page-requisites ----no-parent -P /path/to/download https://example-domain.com.
+
+
+https://gofile.io/d/RnTRV3
+
+
+https://fivethirtyeight.datasettes.com/fivethirtyeight
+
+https://github.com/fivethirtyeight/data
+
+http://ns377932.ip-5-196-89.eu/freecomics/?dir=books
+
+https://manual.calibre-ebook.com/db_api.html
+
+
+
+https://the-eye.eu/public/Books/Calibre_Libraries/ - hundreds of IPAddresses with books
+https://stackoverflow.com/questions/14723091/how-to-query-from-calibre-database
+
+
+https://calishot-eng-3.herokuapp.com/index-eng/summary
+
+
+
+wget https://calishot-eng-3.herokuapp.com/index-eng.json?sql=select+uuid%2C+title%2C+authors%2C+year%2C+series%2C+language%2C+links%2C+publisher%2C+tags%2C+identifiers%2C+formats+from+summary+order+by+uuid+limit+500,500
+
+
+
+https://www.reddit.com/r/opendirectories/
+
+https://www.reddit.com/r/opencalibre/comments/er3o5z/calishot_202001_a_list_of_all_the_open_calibre/
+This is a link where they publish all the IPAddress of all the servers that are running the calibre servers
+
+https://the-eye.eu/public/Books/Calibre_Libraries/
+
+
+
+https://www.reddit.com/r/opendirectories/comments/eoeh26/theeye_calibre_libraries_a_million_books_setting/
+
+https://www.reddit.com/search/?q=pdf
+
+https://drive.google.com/file/d/1SrMNMQZdss2irRYyhYbCRk-qgMrRNjXQ/view
+
+https://www.reddit.com/user/krazybug/
+
+https://the-eye.eu/public/Comics/Top%20Cow%20%281992-2016%29/
+https://www.reddit.com/r/opendirectories/comments/j7i1su/calishot_202010_find_ebooks_among_398_calibre/
+
+https://the-eye.eu/public/
+
+https://stackoverflow.com/questions/14723091/how-to-query-from-calibre-database
+
+https://unix.stackexchange.com/questions/411772/extract-and-print-all-links-not-to-download-the-contents-from-an-archived-webs
+
+wget -w 3 -m -np -c -R "index.html*" "http://example.com.whatever/public/files/"
+
+https://the-eye.eu/public/Books/A%20Library/Big%20Data/
+
+https://calishot-eng-3.herokuapp.com/
+
+
+https://www.reddit.com/r/opencalibre/comments/er3o5z/calishot_202001_a_list_of_all_the_open_calibre/
+https://www.reddit.com/r/opendirectories/comments/kapf6e/calishot_im_about_to_give_up/
+
+
+https://www.reddit.com/r/opendirectories/comments/k7igsg/calishot_202012_find_ebooks_among_408_calibre/
+https://www.reddit.com/user/krazybug/
+
+http://95.168.194.193/~ziva/movies/
+
+https://www.reddit.com/r/opendirectories/comments/eqxmul/378_open_calibre_libraries/
+
+https://www.reddit.com/r/opencalibre/
+
+
+
+https://www.reddit.com/r/opencalibre/comments/k1ny0n/the_ultimate_ebook_resources_subreddit/
+https://www.reddit.com/r/EBook_Resources/
+
+
+http://67.185.44.15:9003/mobile?search=&order=descending&sort=timestamp&num=25&library_id=calibre_library&start=51
+
+https://the-eye.eu/public/Books/Calibre_Libraries/103.55.108.22/
+https://framabin.org/p/?1e0eecc54c076f5b#gKiUnWwwRT9el9My/ixuv3P1vQroMudeG/PJDXhLsnY=
+
+
+
+E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar
+
+
+
+http://24.200.26.185:8080/mobile
+http://73.203.44.114:8080/mobile
+http://73.208.101.58:8080/mobile
+http://79.109.173.211:9000/mobile
+http://98.209.96.49:8080/mobile
+http://108.56.69.53:8080/mobile
+http://162.218.194.49:8080/mobile
+http://185.133.99.20:8080/mobile
+http://193.33.56.58:8080/mobile
+http://204.83.26.140:8083/mobile
+http://75.82.61.223:8080/mobile
+http://76.183.116.186:8080/mobile
+http://136.34.117.246:8081/mobile
+http://193.29.63.231:8080/mobile
+http://207.237.122.161:8080/mobile
+http://24.13.229.188:8090/mobile
+http://74.102.26.201:8080/mobile
+http://98.229.124.206:9080/mobile
+http://123.25.24.19:8080/mobile
+http://162.250.210.246:8080/mobile
+http://203.219.85.182:8080/mobile
+http://81.164.201.237:8080/mobile
+http://198.217.116.8:8081/mobile
+http://70.179.26.185:8008/mobile
+http://104.131.175.196:8080/mobile
+http://185.215.227.81:8081/mobile
+http://73.170.154.139:8080/mobile
+http://98.254.161.156:8080/mobile
+http://45.79.161.180:8080/mobile
+http://47.233.49.105:8080/mobile
+http://162.245.209.175:8081/mobile
+http://89.29.118.66:8080/mobile
+http://192.241.178.98:8080/mobile
+http://68.147.143.190:8080/mobile
+http://99.242.40.204:8080/mobile
+http://87.117.1.35:9191/mobile
+http://24.207.227.8:8080/mobile
+http://146.168.191.48:8080/mobile
+http://199.15.252.131:8080/mobile
+http://91.121.85.215:8080/mobile
+http://47.153.176.252:8080/mobile
+http://91.138.2.84:8080/mobile
+http://193.224.177.174:8081/mobile
+http://69.163.12.2:8081/mobile
+http://196.200.146.45/mobile
+http://155.93.187.204:8081/mobile
+http://194.204.26.133:8080/mobile
+http://179.49.112.238:2020/mobile
+http://71.191.254.98:8080/mobile
+http://82.224.148.208:8080/mobile
+http://71.80.204.137:8089/mobile
+http://82.69.34.216:8085/mobile
+http://73.158.179.124:8086/mobile
+http://196.188.40.145:8080/mobile
+http://76.20.173.246:8080/mobile
+http://67.231.249.98:8090/mobile
+http://81.174.249.66:8123/mobile
+http://193.236.82.215/mobile
+http://73.70.189.235:8090/mobile
+http://87.79.66.37:8080/mobile
+http://87.79.66.37:8080/mobile
+http://5.196.67.197:8080/mobile
+http://68.59.253.110:8080/mobile
+http://85.95.112.183:9090/mobile
+http://198.27.65.36:8080/mobile
+http://5.9.21.194:8080/mobile
+http://70.185.106.158:8080/mobile
+http://200.235.225.105/mobile
+http://51.15.122.222:8082/mobile
+http://95.174.223.136:8084/mobile
+http://192.99.10.76:8080/mobile
+http://78.92.185.171:8888/mobile
+http://68.132.22.122:8080/mobile
+http://71.196.137.201:8888/mobile
+http://72.199.234.80:8090/mobile
+http://172.104.134.38:8081/mobile
+http://88.51.41.242:8080/mobile
+http://86.81.242.218:8181/mobile
+http://80.56.27.111:8080/mobile
+http://174.4.94.90:8081/mobile
+http://68.187.93.102:8080/mobile
+http://47.7.153.25:8080/mobile
+
+
+
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/103.55.108.22/ 103.55.108.22 > 103.55.108.22.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/104.131.175.196/ 104.131.175.196 > 104.131.175.196.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/107.133.161.178/ 107.133.161.178 > 107.133.161.178.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/136.34.117.246/ 136.34.117.246 > 136.34.117.246.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/143.159.148.96/ 143.159.148.96 > 143.159.148.96.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/156.34.80.41/ 156.34.80.41 > 156.34.80.41.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/173.165.37.41/ 173.165.37.41 > 173.165.37.41.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/173.66.243.178/ 173.66.243.178 > 173.66.243.178.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/185.215.227.81/ 185.215.227.81 > 185.215.227.81.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/193.33.56.58/ 193.33.56.58 > 193.33.56.58.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/194.204.26.133/ 194.204.26.133 > 194.204.26.133.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/202.203.132.245/ 202.203.132.245 > 202.203.132.245.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/206.251.211.181/ 206.251.211.181 > 206.251.211.181.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/24.131.177.233/ 24.131.177.233 > 24.131.177.233.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/24.253.114.187/ 24.253.114.187 > 24.253.114.187.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/41.84.128.78/ 41.84.128.78 > 41.84.128.78.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/62.3.65.234/ 62.3.65.234 > 62.3.65.234.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/68.101.162.5/ 68.101.162.5 > 68.101.162.5.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/68.41.245.50/ 68.41.245.50 > 68.41.245.50.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/69.163.12.2/ 69.163.12.2 > 69.163.12.2.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/73.131.228.29/ 73.131.228.29 > 73.131.228.29.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/73.237.8.177/ 73.237.8.177 > 73.237.8.177.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/80.4.223.22/ 80.4.223.22 > 80.4.223.22.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/80.5.42.254/ 80.5.42.254 > 80.5.42.254.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/81.96.255.118/ 81.96.255.118 > 81.96.255.118.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/82.29.167.195/ 82.29.167.195 > 82.29.167.195.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/86.29.150.239/ 86.29.150.239 > 86.29.150.239.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/88.191.195.108/ 88.191.195.108 > 88.191.195.108.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/92.232.188.14/ 92.232.188.14 > 92.232.188.14.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/92.246.26.153/ 92.246.26.153 > 92.246.26.153.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/94.11.220.26/ 94.11.220.26 > 94.11.220.26.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/94.4.25.144/ 94.4.25.144 > 94.4.25.144.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/94.8.120.54/ 94.8.120.54 > 94.8.120.54.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/96.32.19.73/ 96.32.19.73 > 96.32.19.73.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/96.37.77.184/ 96.37.77.184 > 96.37.77.184.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/98.207.107.211/ 98.207.107.211 > 98.207.107.211.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/99.17.230.60/ 99.17.230.60 > 99.17.230.60.txt
+java -cp E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT.jar;E:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\target\ROOT-jar-with-dependencies.jar com.single.website.crawler.BookToLearnCrawler https://the-eye.eu/public/Books/Calibre_Libraries/99.67.190.249/ 99.67.190.249 > 99.67.190.249.txt
+
+With PDF
+E:\everything_pdf\scrapes_and_downloads\calibre-individual-Ips\24_200_26_185_8080.txt
+E:\everything_pdf\scrapes_and_downloads\calibre-individual-Ips\23.25.113.229_8080.txt
+E:\everything_pdf\scrapes_and_downloads\calibre-individual-Ips\73_203_44_114_8080.txt
+E:\everything_pdf\scrapes_and_downloads\calibre-individual-Ips\73_208_101_58_8080.txt
+E:\everything_pdf\scrapes_and_downloads\calibre-individual-Ips\98_209_96_49_8080.txt
+
+
+
+java -cp ROOT.jar;ROOT-jar-with-dependencies.jar com.pdf.warc.ccrawl.processor.HackerNewsJsonReaderAndProcessor allpdflinks.json > log.txt
+
+I:\Java\java-11-openjdk-11.0.6.10-2.windows.redhat.x86_64\bin;I:\Python27;I:\Python27\Scripts;I:\Python27\Lib\site-packages\python_dateutil-2.8.1-py2.7.egg\dateutil;I:\apache-maven-3.6.3\bin;I:\curl-7.35.0-win64_14_10\bin;I:\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;
+
+
+for i in {0..2000}; do (curl -Is https://pdfdomain.com/pdf/download/d0158a517e80631f01d1b5e1112801c5/summer-assignment-for-electives.pdf | head -n1 &) 2>/dev/null; done
+
+
+
+wget --timeout=2 --waitretry=0 --tries=2 --retry-connrefused http://91.138.2.84:8080/legacy/get/PDF/97/library/Liebes%20Leid%20und%20Lust%20-%20Fried%2C%20Amelie_97.pdf
+

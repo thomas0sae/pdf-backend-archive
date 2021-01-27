@@ -1,0 +1,4 @@
+The idea is to put all the social media URLs searchable by domain name.
+
+Get the home page of all the domains, and then extract all the URLS and save. This can be later used for finding contact information and blog links and telephone numbers and such.
+

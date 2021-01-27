@@ -1,0 +1,145 @@
+{
+	"mappings": {
+		"properties": {
+			"category": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"cpRit": {
+				"type": "text",
+				"index": "false",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"title": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"author": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"desc": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"flNm": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"foundUrl": {
+				"type": "text",
+				"index": "false",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"imgFlPth": {
+				"type": "text",
+				"index": "false",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"ixDate": {
+				"type": "date",
+				"index": "false"
+			},
+			"language": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 50
+					}
+				}
+			},
+			"lnkTxt": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"pgCnt": {
+				"type": "long",
+				"index": "false"
+			},
+			"sz": {
+				"type": "long",
+				"index": "false"
+			},
+			"keywords": {
+				"type": "text",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"url": {
+				"type": "text",
+				"index": "false",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"yr": {
+				"type": "integer"
+			},
+			"dwnLdCnt": {
+				"type": "long",
+				"index": "false"
+			},
+			"rtng": {
+				"type": "integer",
+				"index": "false"
+			},
+			"prevwOk":{
+				"type": "boolean",
+				"index": "false"
+			}
+		}
+	}
+}

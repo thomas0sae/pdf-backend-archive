@@ -1,0 +1,569 @@
+ 
+
+F:\Work\Source\msvran\trunk\pdfparser-elastic\elastic>
+
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdfs/crawled/_bulk?pretty --data-binary @"F:\Work\Source\msvran\trunk\pdfparser-elastic\elastic\crawled1516345677297.json" 
+
+E:\ccrawl\11-30
+
+
+
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdf1/_doc/_bulk?pretty --data-binary @"elastic-upload1594501898958.json"
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdf1/_doc/_bulk?pretty --data-binary @"elastic-upload1594517225771.json"
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdf1/_doc/_bulk?pretty --data-binary @"elastic-upload1594531435201.json"
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdf1/_doc/_bulk?pretty --data-binary @"elastic-upload1594549880549.json"
+
+curl -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdf1/_doc/_bulk?pretty --data-binary @"elastic-upload1606885566721.json"
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+elastic-upload1594501898958.json
+elastic-upload1594517225771.json
+elastic-upload1594531435201.json
+elastic-upload1594549880549.json
+elastic-upload1594569256051.json
+elastic-upload1594576462570.json
+elastic-upload1594583105000.json
+elastic-upload1594592605732.json
+elastic-upload1594598723162.json
+elastic-upload1594610124713.json
+elastic-upload1594616393862.json
+elastic-upload1594630930921.json
+elastic-upload1594643921640.json
+elastic-upload1594663886433.json
+elastic-upload1594679469896.json
+elastic-upload1594701878731.json
+elastic-upload1594733154965.json
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+
+F:\everything_pdf\gcp_download\test>curl -H "Content-Type: application/x-ndjson" -XPUT localhost:9200/pdf1 --data-binary @"F:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\mapping.json"
+{"acknowledged":true,"shards_acknowledged":true,"index":"pdf1"}
+
+curl -H "Content-Type: application/x-ndjson" -XPUT localhost:9200/pdf1 --data-binary @"mapping.json"
+
+
+F:\everything_pdf\gcp_download\test>
+curl -H "Content-Type: application/x-ndjson" -XPUT localhost:9200/hompg --data-binary @"F:\everything_pdf\source-code\java-all-pdf-work\pdf-backend\mapping.json"
+{"acknowledged":true,"shards_acknowledged":true,"index":"hompg"}
+
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/hompg/_doc/_bulk?pretty --data-binary @"elastic-upload1592636009330.json"
+
+{
+"query": {
+"bool": {
+"should": [{
+"query_string": {
+"query": ""+searchKeyword+""
+}
+}]
+}
+},
+"from": "+paginStart+",
+"size": 30
+}
+
+https://www.elastic.co/guide/en/elasticsearch/reference/7.4/query-dsl-query-string-query.html#_boosting
+{ "query": { "multi_match": { "query": "*dippers*", "fields": ["title^2","author","desc^1","flNm^2","lnkTxt^2","category","keywords","language"] } } }
+
+
+	{
+	"query": {
+	"multi_match" : {
+	"query" : "Buddhism",
+	"fields" : ["title^2", "author", "desc^1", "flNm^2"]
+	}
+	}, 
+	"from": 1,
+	"size": 10
+	}
+
+
+
+
+
+
+
+http://localhost:9200/pdfs/linked/C651ACA59FE5583E72C7A4A6B810CD8C
+
+Getting everything about a document	
+
+http://localhost:9200/pdfs/linked/C651ACA59FE5583E72C7A4A6B810CD8C?pretty&_source=false
+For getting only the confirmation of if document is present or not
+
+http://localhost:9200/pdfs/linked/C651ACA59FE5583E72C7A4A6B810CD8C/?_source=topDmn
+For getting only the fields we want
+
+
+http://localhost:9200/pdfs/linked/_search?q=book
+To search for book anywhere in linked type
+
+http://localhost:9200/pdfs/_search?q=book
+To search for book anywhere in pdf index
+
+
+http://localhost:9200/pdfs/_search?q=book&sort=pgCnt:desc
+Sort a field, without document type in url
+
+
+http://localhost:9200/pdfs/crawled/_search?q=b*&sort=pgCnt:desc
+Sort a field, within crawled document type in url
+
+Documents from index 10, and only 2
+http://localhost:9200/pdfs/crawled/_search?q=b*&from=10&size=2&sort=pgCnt:desc
+
+Explain
+http://localhost:9200/pdfs/crawled/_search?q=b*&from=10&size=2&explain
+
+
+
+http://localhost:9200/pdfs/crawled/_search
+{"query":{"match_all":{}}}
+
+Match all documents - request body
+
+http://localhost:9200/pdfs/crawled/_search
+{"query":{"match_all":{}}, "size": 3
+}
+
+Retrieve only 3 results - not wworking
+
+http://localhost:9200/pdfs/crawled/_search
+{"query":{"match_all":{}}, "size": 3, "from": 1
+}
+
+curl -XGET 'http://localhost:9200/pdf1/_doc/ad71481771a851a0a5b38e73082278bc?pretty' -H 'Content-Type: application/json'
+
+
+
+curl -XGET 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d' {"query":{"match_all":{}}, "size": 3, "from": 1, "sort":{"pgCnt":{"order":"desc"} }}'
+
+With requestbody
+
+curl -XGET 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d' 
+{"query": { "term" : {"url": "dippers"} } }'
+
+Exact match for book in the url field
+
+add _source : false to remove the actual data
+'{
+	"_source":false,
+	"query": { "term" : {"url": "book"} } 
+}'
+
+or add wildcharacters if you need to specify a set of fields to be returned
+'{
+	"_source":"u*",
+	"query": { "term" : {"url": "book"} } 
+}'
+
+u* will bring every field that matches starting u
+
+
+or an array of fields
+
+'{
+	"_source":["u*", "*n"],
+	"query": { "term" : {"url": "book"} } 
+}'
+
+or to include or exclude
+'{
+	"_source":
+	{ 
+		"includes": ["st*", "*n*"],
+		"excludes" : ["u*", "*a"]
+	},
+	"query": { "term" : {"url": "book"} } 
+}'
+
+
+
+
+Match queries
+
+'{
+	"query": { "match" : {"url": "book"} } 
+}'
+
+
+
+Phrase query for match
+'{"query": { "match" : {"url":{"query": "read book","operator": "or"}}}}'
+
+
+If no operator specified, then it is OR
+
+'{
+	"query": { "match" : {"url": "book shelf"} } 
+}'
+
+
+match phrase matches the entire phrase
+'{
+	"query": { "match_phrase" : {"url": "book shelf"} } 
+}'
+
+
+If we don't know the full phrase and only a prefix, we use match_phrase_prefix
+'{
+	"query": { "match_phrase_prefix" : {"url": "bo"} } 
+}'
+
+
+common words query
+'{"query":{"common":{"url":"this book is great","cutoff_frequency":0.001}}}'
+
+
+bool query with must
+'{"query":{"bool":{"must":[{"match":{"url":"shelf"}},{"match":{"url":"shelf"}}]}}}'
+
+
+bool query with should - may matches but not must
+'{"query":{"bool":{"should":[{"match":{"url":"shelf"}},{"match":{"url":"shelf"}}]}}}'
+
+
+
+
+"indices_boost" : {"crawled" : 2.0}
+
+
+
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+         "query_string": {
+           "query": "book"
+         }
+        },
+        { "term" : { "_type" : {"value" : "crawled", "boost" : 2.0} } }
+      ]
+    }
+  }
+}
+Same above- straightened below
+
+{"query":{"bool":{"should":[{"query_string":{"query":"book"}},{"term":{"_type":{"value":"crawled","boost":2.0}}}]}}}
+
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-search-after.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-scroll.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html
+
+
+
+Search popular terms
+https://stackoverflow.com/questions/27741717/elasticsearch-how-to-get-popular-words-list-of-documents
+
+curl -XGET 'http://localhost:9200/pdfs/crawled/_search?pretty' -d '{
+  "query": {
+    "match_all" : {}
+  },
+  "aggs" : {
+      "mydata_agg" : {
+    "terms": {"field" : "url", "size" : 2}
+    }
+  }
+}'
+
+
+
+Random documents sorted by pageCnt
+curl -XGET 'http://localhost:9200/pdfs/crawled/_search?pretty' -d '
+{
+   "size": 10,
+   "query": {
+      "function_score": {
+         "functions": [
+            {
+               "random_score": {
+                  "seed": "2"
+               }
+            }
+         ]
+      }
+   },"sort": [{"pgCnt":{"order":"desc"}}]
+}'
+
+https://stackoverflow.com/questions/11566838/elastic-search-hyphen-issue-with-term-filter
+
+Set mapping to not analyzed for exact query matches
+curl -XGET 'http://localhost:9200/pdfs/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+    "mappings" : {
+        "crawled" : {
+            "properties" : {
+                "field" : { "type": "string", "index" : "not_analyzed" }
+            }
+        }
+    }
+}'
+
+
+
+
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d'
+{"query": { "term" : {"topDmn.raw": "fap.co.za "} } }'
+{"query": { "term" : {"topDmn.raw": "courtofrecord.org"} } }'
+
+chuou-kagaku.com
+
+
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+    "query": {
+        "range" : {
+            "sz" : {
+                "gte" : 10 MB,
+                "lte" : 20 MB
+            }
+        }
+    }
+}
+
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+    "query": {
+        "match" : {
+            "topDmn": "chuou-kagaku.com"
+        }
+    }
+}'
+
+
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d'
+{"query":{"bool":{"must":[{"term":{"topDmn.keyword":"ngudimulyo.com"}}]}},"from":0,"size":15}'
+
+{"query":{"match":{"topDmn":"chuou-kagaku.com"}}}'
+
+
+
+Remove a field from all documents
+https://stackoverflow.com/questions/17019350/elastica-or-elasticsearch-remove-field-from-all-documents
+
+
+
+DELETE
+
+curl -XDELETE 'http://localhost:9200/pdf1/_doc/8cab8c0718415d1c5ede9f8548cd34fb'
+curl -XDELETE -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" 'http://localhost:9200/pdf2/_doc/5dab013ecd7e940841c8c82c623e1315'
+
+delete
+
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_delete_by_query' -H 'Content-Type: application/json' -d'
+{
+  "query": { 
+    "match": {
+      "topDmn": "fungamingzone.com"
+    }
+  }
+}'
+
+
+
+
+Working......search page navigation
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_search?pretty' -H 'Content-Type: application/json' -d'
+{"query":{"bool":{"must":[{"query_string":{"default_field":"_all","query":"book"}}]}},"from":120,"size":100}
+
+random search with navigation
+{"size":10,"query":{"function_score":{"functions":[{"random_score":{"seed":2342342342}}]}}}
+
+
+
+curl -XPOST 'http://localhost:9200/pdfs/crawled/_search' -H 'Content-Type: application/json' -d'
+{"query":{"bool":{"should":[{"query_string":{"query":"book"}}]}},"size":30}'
+
+
+
+	curl -XPUT 'http://localhost:9200/pdfs/_settings' -d'
+	{
+	"index.search.slowlog.threshold.query.warn": "1ms",
+	"index.search.slowlog.threshold.query.info": "1ms",
+	"index.search.slowlog.threshold.query.debug": "1ms",
+	"index.search.slowlog.threshold.query.trace": "1ms",
+	"index.search.slowlog.threshold.fetch.warn": "1ms",
+	"index.search.slowlog.threshold.fetch.info": "1ms",
+	"index.search.slowlog.threshold.fetch.debug": "1ms",
+	"index.search.slowlog.threshold.fetch.trace": "1ms",
+	"index.indexing.slowlog.threshold.index.warn": "1ms",
+	"index.indexing.slowlog.threshold.index.info": "1ms",
+	"index.indexing.slowlog.threshold.index.debug": "1ms",
+	"index.indexing.slowlog.threshold.index.trace": "1ms",
+	"index.indexing.slowlog.level": "info",
+	"index.indexing.slowlog.source": "1000"
+	}'
+	
+	
+	
+asthoms@allpdf:~/data-tomcat$ curl -XGET http://localhost:9200/_cat/indices?v
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   pdf1  9Wrk2SFITPqf1wuSIZK-SA   1   1     442994       374092    744.7mb        744.7mb
+
+asthoms@allpdf:~/data-tomcat$ curl -XGET http://localhost:9200/_cat/indices?v
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   pdf1  9Wrk2SFITPqf1wuSIZK-SA   1   1     528664       542702      1.5gb          1.5gb
+asthoms@allpdf:~/data-tomcat$
+
+
+
+
+
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "bool": {
+            "must": [
+              {
+                "prefix": {
+                  "Desc": "and"
+                }
+              },
+              {
+                "term": {
+                  "_index": "pdf2"
+                }
+              }
+            ]
+          }
+        },
+		{
+          "bool": {
+            "must": [
+              {
+                "prefix": {
+                  "desc": "and"
+                }
+              },
+              {
+                "term": {
+                  "_index": "pdf1"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+
+https://stackoverflow.com/questions/57123806/how-to-sort-and-limit-result-from-multiple-indices-in-elastic-search
+
+Alternatively, you can also perform a single query across multiple indices and then group the results using aggregations by index name;specify the top_hits size as 10 to get the top 10 hits from each index.
+GET index1,index2,index3/_search
+{
+  "size": 0,
+  "query": { ... },
+  "aggs": {
+    "indexes": {
+      "terms": {
+        "field": "_index",
+        "size": 50
+      },
+      "aggs": {
+        "hits": {
+          "top_hits": {
+            "size": 10
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+Based on above
+{
+    "query": {
+        "bool": {
+            "should": [{
+                    "query_string": {
+                        "default_field": "_all",
+                        "query": "management"
+                    }
+                },
+				{
+					"term": {
+					  "_index": "*"
+					}
+              }
+            ]
+        }
+    },
+  "aggs": {
+    "indexes": {
+      "terms": {
+        "field": "_index",
+        "size": 50
+      },
+      "aggs": {
+        "hits": {
+          "top_hits": {
+            "size": 10
+          }
+        }
+      }
+    }
+  }
+}
+
+curl -XDELETE -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" 'http://localhost:9200/pdf1/_doc/42f12b36d8c4aceb59565c26f752dbe0'
+curl -XDELETE -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" 'http://localhost:9200/pdf1/_doc/ea9465fa1a9c31980496f08106be7e3d'
+curl -XDELETE -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" 'http://localhost:9200/pdf1/_doc/749de4448e2c243dcc26e8849c877e2d'
+
+
+To Update Youtube URLs
+curl -XGET -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" 'http://localhost:9200/pdf1/_doc/ad71481771a851a0a5b38e73082278bc?pretty' -H 'Content-Type: application/json'
+
+curl -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/pdf1/_doc/_bulk?pretty --data-binary @"elastic-upload1594501898958.json"
+
+
+To update youtube URLS in elasticsearch. The above commands are hence not needed
+
+curl -XPOST -H "Authorization: Basic ZWxhc3RpYzpUZWNoUGFzc0AxMjMh" "localhost:9200/pdf2/_update/58704a3050274077d8b640ae145d3dca/" -H 'Content-Type: application/json' -d '
+{
+  "script": {
+    "source": "ctx._source.ytbe = params.ytbe",
+    "lang": "painless",
+    "params": {
+      "ytbe": "https://www.youtube.com/embed/FaAGHqxWIvs"
+    }
+  }
+}'

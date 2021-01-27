@@ -1,0 +1,155 @@
+
+C:\Users\easothomas\Downloads\000>..\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin\ffmpeg.exe -loop 1 -y -i 000242068bdd9361e082a52d0db9883-d.jpg -i ..\Rihanna1.m4a -shortest -acodec copy -vcodec mjpeg result.avi
+
+
+
+..\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin\ffmpeg.exe -loop 1 -t 5 -i 0005928e6ad9ae3a5f83ae1ffbe14ed6-d.jpg -loop 1 -t 5 -i 000e3b11d21d456ce69548fc899b18b7-d.jpg  -loop 1 -t 5 -i 00067775797FF58B10C48625001582C8-d.jpg -loop 1 -t 5 -i 000d950d2085c20b487a6cc7ad3d610c.jpg -loop 1 -t 5 -i 00024206d8bdd9361e082a52d0db9883-d.jpg  -i ..\Rihanna1.m4a -shortest -acodec copy -filter_complex  "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=out:st=4:d=1[v0];  [1:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v1];  [2:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v2];  [3:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v3];  [4:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v4];  [v0][v1][v2][v3][v4]concat=n=5:v=1:a=0,format=yuv420p[v]" -map "[v]" out.mp4
+ 
+ 
+..\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\ffmpeg-2020-09-16-git-c79f07cc0c-essentials_build\bin\ffmpeg.exe -loop 1 -t 5 -i 0005928e6ad9ae3a5f83ae1ffbe14ed6-d.jpg -loop 1 -t 5 -i 000e3b11d21d456ce69548fc899b18b7-d.jpg  -loop 1 -t 5 -i 00067775797FF58B10C48625001582C8-d.jpg -loop 1 -t 5 -i 000d950d2085c20b487a6cc7ad3d610c.jpg -loop 1 -t 5 -i 00024206d8bdd9361e082a52d0db9883-d.jpg  -i ..\Rihanna1.m4a -filter_complex  "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=out:st=4:d=1[v0];  [1:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v1];  [2:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v2];  [3:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v3];  [4:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v4];  [v0][v1][v2][v3][v4]concat=n=5:v=1:a=0,format=yuv420p[v]" -map "[v]" -map 5:a -shortest out.mp4
+ 
+ 
+ 
+0005928e6ad9ae3a5f83ae1ffbe14ed6-d.jpg
+000e3b11d21d456ce69548fc899b18b7-d.jpg
+00067775797FF58B10C48625001582C8-d.jpg
+000d950d2085c20b487a6cc7ad3d610c.jpg
+00024206d8bdd9361e082a52d0db9883-d.jpg
+000b7e49fe0c56137ff5b24abe311a02.jpg
+0004e2791a73005dc900824624b44c35-d.jpg
+000599f469140ac3c828876e258866af-d.jpg
+
+
+
+https://superuser.com/questions/833232/create-video-with-5-images-with-fadein-out-effect-in-ffmpeg/1071748#1071748
+
+
+
+
+https://stackoverflow.com/questions/36496855/ffmpeg-moving-text-drawtext
+ffmpeg -i VideoInput.mp4 -vf "drawtext=enable='between(t,12,14)':fontfile=myfont.otf:text='Test test':x=(w-text_w)/2:y=w/50\*mod(t\,2):fontsize=65" -acodec copy outputVideo.mp4
+
+ffmpeg -i bouncing_ball.mp4 -vf "drawtext=enable='between(t,12,14)':text='Test test':x=(w-text_w)/2:y=w/50\*mod(t\,2):fontsize=65" -acodec copy outputVideo.mp4
+
+
+ffmpeg library to draw text on video in specific time and i'm success to do that Now i need to move the text from position to another and i can't do that so can any one suggest me how to do that
+
+where
+
+x1 and y1 are initial co-ordinates; x2 and y2 are final co-ordinates; t1 and t2 are start and end times; in your given command, 12 and 14.
+
+These above need to be replaced with their values in the command.
+
+To give a 1 second stay at the end,
+
+ffmpeg -i VideoInput.mp4 \
+       -vf "drawtext=enable='between(t,12,15)':fontfile=myfont.otf:text='Test test': \
+           x='if(lt(t-t2+1\,0)\,x1+(x2-x1)*(t-t1)/(t2-t1-1)\,x)': \
+           y='if(lt(t-t2+1\,0)\,y1+(y2-y1)*(t-t1)/(t2-t1-1)\,y)':fontsize=65" \
+       -acodec copy outputVideo.mp4
+	   
+	   
+WORKS
+ffmpeg -i test.mp4 -vf "drawtext=enable='between(t,12,15)':text='Test test': x='if(lt(t-15+1\,0)\,10+(20-10)*(t-2)/(15-2-1)\,x)': y='if(lt(t-15+1\,0)\,200+(250-200)*(t-2)/(15-2-1)\,y)':fontsize=65" -acodec copy outputVideo.mp4
+
+
+
+
+Image manipulation for video generation
+1) options tried - tried to run the script downloaded from github. But it is too memory/CPU intensive.
+E:\everything-movies\source\ffmpeg-video-slideshow-scripts-master\advanced_scripts
+push_vertical_film1.sh
+The problem is, this cannot run for a whole PDF. Too much CPU?ememory
+
+2) second Idea - create a lonnnnnng image and show as a scroll.
+Works, but image has to be created in pieces and video has to be several, and joined
+
+3) Individual images, flashes and goes
+
+4) Individual images scrolls from bottom to top
+Original from  https://stackoverflow.com/questions/54728728/create-a-vertical-video-scroll-based-on-an-image-using-ffmpeg
+ffmpeg -r 1 -loop 1 -t 61 -i 00000.jpg -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+OOTB trying to make it work - jpg name changed to png - png - 4 bytes
+ffmpeg -r 1 -loop 1 -t 61 -i 00000.jpg -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+The above runs smoothly for one images, but doesn't stop immediately. So removing t 61 - no change. Some default taken
+ffmpeg -r 1 -loop 1 -i 00000.jpg -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+
+ffmpeg -r 1 -loop 1 -i 00000.jpg -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+
+WORKS, trying to add all the images per sequence, image scrolls, but not fully shown
+ffmpeg -r 1 -loop 1 -t 61 -f image2 -s 1280x720 -start_number 0 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p -frame_duration 2.5 -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+same command, reducing -r value, WORKS, but not perfect
+ffmpeg -r 0.25 -loop 1 -t 61 -f image2 -s 1280x720 -start_number 0 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p -frame_duration 2.5 -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+Removing size first one
+ffmpeg -r 0.25 -loop 1 -t 61 -f image2 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p -frame_duration 2.5 -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+Removed loop _ DIDNT WORK
+ffmpeg -r 0.25 -t 61 -f image2 -i 00000.jpg -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p -frame_duration 2.5 -filter_complex "color=white:s=1280x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+
+
+
+
+ffmpeg -r 60 -f image2 -s 1920x1080 -start_number 1 -i 'img%0d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4
+ffmpeg -r 1 -f image2 -s 1920x1080 -start_number 0 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p -frame_duration 2.5 test.mp4
+
+PERFECT - This is the FINALLLLLLLLLLLLLL
+ffmpeg -r 0.5 -f image2 -s 1920x1080 -start_number 0 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -pix_fmt yuv420p -frame_duration 2.5 -r 25 test.mp4
+ffmpeg  -i test.mp4 -stream_loop -1 -i bg.mp3 -shortest -map 0:v:0 -map 1:a:0 -y output.mp4
+
+Looped Final
+ffmpeg -r 1/3 -f image2 -s 1920x1080 -start_number 0 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -pix_fmt yuv420p -frame_duration 2.5 -r 10 -y intermediateout.mp4
+ffmpeg  -i test.mp4 -stream_loop -1 -i bg.mp3 -shortest -map 0:v:0 -map 1:a:0 -y output.mp4
+ffmpeg -i -y intermediateout.mp4 -stream_loop -1 -i bg.mp3 -shortest -map 0:v:0 -map 1:a:0 -y fulloutput.mp4
+
+DO BOTH ABOVE
+
+https://stackoverflow.com/questions/5015771/merge-video-and-audio-with-ffmpeg-loop-the-video-while-audio-is-not-over
+
+ffmpeg -r 1 -loop 1 -t 1770 -i concat.png -filter_complex "color=white:s=1480x720, fps=fps=60[bg];[bg][0]overlay=y=-'t*120':shortest=1[video]" -preset ultrafast -map [video] output.mp4
+
+
+ffmpeg -f lavfi -i amovie=bg.mp3:loop=55555 -r 1 -f image2 -s 1920x1080 -start_number 0 -i '%05d.jpg' -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p -frame_duration 2.5 test.mp4
+ https://stackoverflow.com/questions/53021266/non-monotonous-dts-in-output-stream-previous-current-changing-to-this-may-result
+ -vf select=concatdec_select -af aselect=concatdec_select,aresample=async=1
+ 
+ 
+ 
+Some links
+https://github.com/letungit90/ffmpeg_memo
+
+
+https://stackoverflow.com/questions/7015489/building-video-from-images-with-ffmpeg-w-pause-between-frames
+ffmpeg -f image2 -r 1 -i %05d.jpg -y -r 25 test.mp4
+as -r 1 this shows the image every second
+-r 0.5 would mean 2 seconds and so on.
+
+The below shows every image 3 seconds
+PERFECT
+ffmpeg -f image2 -r 0.25 -i %05d.jpg -y -r 25 test.mp4
+
+adding loop PERFECT - didn't see a c
+ffmpeg -f image2 -loop 1 -r 0.25 -i %05d.jpg -y -r 25 test.mp4
+
+codec with audio - PERFECT
+ffmpeg -i bg.mp3 -f image2 -loop 1 -r 0.25 -i %05d.jpg -pix_fmt yuv420p -y -r 25 test.mp4
+
+-itsoffset [seconds] in case the first frame has issues
+
+For sliding effect with mp3
+ffmpeg -i bg.mp3 -loop 1 -i %05d.jpg -vf crop=1220:980:n:0 -frames:20 1080 out.mp4
+ffmpeg -r 0.25 -i bg.mp3 -loop 1 -i %05d.jpg -vf crop=1220:980:n:0 -frames:20 1080 -r 0.25 out.mp4
+
+scroll effect - for one image works fine. 
+ffmpeg -loop 1 -i 00000.jpg -vf "scroll=vertical=0.01,crop=iw:600:0:0,format=yuv420p" -t 100 output.mp4
+
+ffmpeg -loop 1 -f image2 -i %05d.jpg -vf "scroll=vertical=0.001,crop=iw:600:0:0,format=yuv420p" -t 100 output.mp4
+
+ ffmpeg -loop 1 -framerate 30 -i 00000.jpg -vf "scroll=0.001,crop=640:360:0:ih,format=yuv420p" -preset veryslow -crf 18 -t 10 output.mp4
+ ffmpeg -framerate 30 -i %05d.jpg -vf "scroll=vertical=0.001,crop=1240:1620:0:ih,format=yuv420p" -preset veryslow -crf 18 -t 1000 output.mp4
